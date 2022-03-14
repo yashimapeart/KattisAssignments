@@ -1,0 +1,50 @@
+/* 
+ * Name: Yashima Peart
+ * Date: March 13,2022
+ * Description: This program accepts an entered integer, counts from 1 to that integer and outputs each increment with the word Abracadabra next to it
+ */
+using System;
+
+namespace TimeLoopAssignment
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            try
+            {
+                // declares variables to hold the inputted integer and to act as a counter
+
+                int n = int.Parse(Console.ReadLine());
+                int counter = 1;
+
+                if (n >= 1 && n <= 100)
+                {
+            // statements in while loop are executed until the value of the counter is greater than the value of the integer entered
+                    while (counter <= n)
+                    {
+                        Console.Write(counter + " Abracadabra");
+            // counter value is displayed with the word Abracadabra next to it 
+                        Console.WriteLine();
+
+              // counter is incremented by 1 if integer inputted is greater than or equal to 1 but less than or equal to 100
+
+                        counter++;
+
+                    }
+                }
+                else
+                {
+                    Console.Write("Please enter an integer between the numbers 1 and 100");
+                }
+            }
+
+            catch
+            {
+                //Displays an error message if an incorrect data type is entered
+                Console.Write("Ensure you are entering an integer");
+            }
+            
+        }
+    }
+}
