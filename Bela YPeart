@@ -1,0 +1,74 @@
+/*
+ * Name: Yashima Peart
+ * Date: April 3, 2022
+ * Description: This program helps keep track of a player's points in the game Belote
+ */
+using System;
+
+namespace BelaKattis
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // reads the input of the number of hands and the value of the suit
+            string firstInput = Console.ReadLine();
+
+           // finds the empty space between the # of hands and suit value in the first input
+            int space = firstInput.IndexOf(' ');
+            //variable holds #of hands
+            int N = int.Parse(firstInput.Substring(0, space));
+            // mutiplies the number of hands by 4
+            int linesNum = N * 4;
+            char B = firstInput[space + 1];
+            // incremental value used to compute total points
+            int points =0;
+
+            //loop collects the description of all cards in the number of hands*4
+
+            for (int x= 0; x < linesNum; x++)
+
+            {
+                string card = Console.ReadLine();
+
+                // assesses the cards by type, sees if they contain a dominant suit, assigns points accordingly, and increments points variable
+                switch (card[0])
+                {
+                    case 'A':
+                        points += 11;
+                        break;
+                    case 'K':
+                        points += 4;
+                        break;
+                    case 'Q':
+                        points += 3;
+                        break;
+                    case 'J':
+                        if (card[1] == B)
+                        { points += 20; }
+                        else
+                        { points += 2; }
+                        break;
+                    case 'T':
+                        points += 10;
+                        break;
+                    case '9':
+                        if (card[1] == B)
+                        { points += 14; }
+                        else
+                        { points += 0; }
+                        break;
+                    case '8':
+                        points += 0;
+                        break;
+                    default:
+                        break;
+                }
+
+
+            }
+            // outputs total points computed
+            Console.WriteLine(points);
+        }
+    }
+}
