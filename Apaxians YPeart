@@ -1,0 +1,38 @@
+/* Name: Yashima Peart
+ * Date: April 8,2022
+ * Description: This program replaces all consecutive runs of the same letter by a single instance of such letter
+ * */
+
+using System;
+
+namespace Apaxians
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // reads the text inputted
+            string longname = Console.ReadLine();
+
+            // declares variable to store new shortened text as space plus the first character of the inputted string
+          
+            string shortname = " " + longname[0];
+            
+            // loop goes through inputted string
+            for ( int i = 1; i < longname.Length; i++)
+            {
+                // if character is repeated in next index, string is reduced and loop jumps to next index
+                if(longname[i] == longname[i-1] )
+                {
+                    continue;
+                }
+
+                //shortname is equal to shortname plus characters remaining in long name
+                shortname += longname[i];
+
+            }
+            // output shortname 
+            Console.WriteLine(shortname);
+        }
+    }
+}
