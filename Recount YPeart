@@ -1,0 +1,68 @@
+/*Yashima Peart
+ * 04/22/2022
+ * A vote counter for a poll
+ */
+using System;
+using System.Collections.Generic;
+
+namespace Recount
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            //Creates a dictionary to hold the names and their associated votes
+            Dictionary<string, int> totalvotes = new Dictionary<string, int>();
+            
+            //Creates a list to keep track of names for later
+            List<string> names = new List<string>();
+            
+            //Variables for the name and winner, and integers for max votes, the index of names, and if there was a tier
+            string name = Console.ReadLine();
+            string winner = "";
+            int highest = 0;
+            int index = 0;
+            int tie = 0;
+
+            //A while loop to go through all the inputs
+            while(name[0] != '*')
+            {
+                //If the name is not in the dictionary it will add it to the dictionary and list
+                if (!totalvotes.ContainsKey(name))
+                {
+                    names.Add(name);
+                    totalvotes.Add(name, 0);
+                }
+                totalvotes[name]++;
+                //If the votes of the current name is the max it will change them to be the current winner
+                if (totalvotes[name] > highest)
+                {
+                    winner = name;
+                    highest = totalvotes[name];
+                }
+
+                //Reads the next line for the name
+                name = Console.ReadLine();
+            }
+
+            //A for each to check each name for a runoff
+            foreach(string a in names)
+            {
+                //If another name has the same as the winner votes it will cause a runoff
+                if (totalvotes[a] == highest && a != winner)
+                {
+                    Console.WriteLine("Runoff!");
+                    tie = 1;
+                }
+                
+                //If the index is the last and there is not a tie it will print a winner
+                else if (index >= names.Count-1 && tie != 1)
+                {
+                    Console.WriteLine(winner);
+                }
+                index++;
+            }
+        }
+    }
+}
